@@ -42,6 +42,9 @@ class AuthForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
+    const { handleAuthenticate } = this.props;
+    handleAuthenticate(this.state);
+
     this.reset();
   };
 

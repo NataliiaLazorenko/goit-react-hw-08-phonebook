@@ -17,5 +17,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 );
-
-// TODO: перечитати про <BrowserRouter>, маршрути і т.д.

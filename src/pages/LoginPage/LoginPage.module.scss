@@ -1,0 +1,25 @@
+.form {
+  padding: 30px;
+  margin: 0 auto;
+
+  background-color: #fff;
+  border-radius: 4px;
+
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.8),
+    0px 3px 1px rgba(0, 0, 0, 0.1);
+
+  @media screen and (min-width: 1200px) {
+    width: 800px;
+  }
+}
+
+.formInput {
+  margin-bottom: 25px;
+}
+
+.lockIcon {
+  padding: 5px;
+  color: white;
+  background-color: green;
+  border-radius: 50%;
+}
