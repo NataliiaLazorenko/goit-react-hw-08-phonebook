@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './ContactListItem.module.css';
+import styles from './ContactListItem.module.scss';
 
+// TODO: додати update контакту
 const ContactListItem = ({ name, number, onDeleteContact }) => (
   <>
     <p>
-      <span className={styles['contact-name']}>{name}: </span>
+      <span className={styles.contactName}>{name}: </span>
       {number}
     </p>
 
     <button
       type="button"
       onClick={onDeleteContact}
-      className={[`button ${styles['delete-contact-btn']}`]}
+      className={`button ${styles.deleteContactBtn}`}
     >
       Delete
     </button>

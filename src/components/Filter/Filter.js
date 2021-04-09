@@ -8,7 +8,7 @@ const Filter = ({ value, onChange }) => (
       type="text"
       value={value}
       onChange={onChange}
-      className="input-field"
+      className="inputField"
     />
   </label>
 );

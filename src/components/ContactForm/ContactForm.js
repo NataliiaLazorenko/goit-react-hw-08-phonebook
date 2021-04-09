@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './ContactForm.module.css';
+import styles from './ContactForm.module.scss';
 
 class ContactForm extends Component {
   static propTypes = {
@@ -63,7 +63,7 @@ class ContactForm extends Component {
             name="name"
             value={name}
             onChange={this.handleChange}
-            className="input-field"
+            className="inputField"
           />
         </label>
         <label className="label">
@@ -74,12 +74,12 @@ class ContactForm extends Component {
             name="number"
             value={number}
             onChange={this.handleChange}
-            className="input-field"
+            className="inputField"
           />
         </label>
         <button
           type="submit"
-          className={[`button ${styles['form-btn']}`]}
+          className={`button ${styles.formBtn}`}
           disabled={name === '' || number === '' ? true : false}
         >
           Add contact

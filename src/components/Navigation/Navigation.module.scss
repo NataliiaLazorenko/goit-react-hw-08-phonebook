@@ -1,0 +1,12 @@
+.navList {
+  display: flex;
+}
+
+.navListItem:not(:last-child) {
+  margin-right: 30px;
+}
+
+.listItemLink {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
