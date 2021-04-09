@@ -1,30 +1,57 @@
 import axios from 'axios';
-import actions from './auth-actions';
+import authActions from './auth-actions';
+
+axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
+
+const token = {
+  // додаємо заголовок авторизації, щоб не прописувати його вручну для кожного http-запиту
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = '';
+  },
+};
 
 const signup = user => async dispatch => {
-  dispatch(actions.signupRequest());
+  dispatch(authActions.signupRequest());
 
   try {
-    const response = await axios.post('/users/signup', user);
+    const { data } = await axios.post('/users/signup', user);
 
-    dispatch(actions.signupSuccess(response.data));
+    token.set(data.token);
+    dispatch(authActions.signupSuccess(data));
   } catch (error) {
-    dispatch(actions.signupError(error.message));
+    dispatch(authActions.signupError(error.message));
   }
 };
 
 const login = user => async dispatch => {
-  dispatch(actions.loginRequest());
+  dispatch(authActions.loginRequest());
 
   try {
-    const response = await axios.post('/users/login', user);
+    const { data } = await axios.post('/users/login', user);
 
-    dispatch(actions.loginSuccess(response.data));
+    token.set(data.token);
+    dispatch(authActions.loginSuccess(data));
   } catch (error) {
-    dispatch(actions.loginError(error.message));
+    dispatch(authActions.loginError(error.message));
   }
 };
 
-const operations = { signup, login };
+const logout = () => async dispatch => {
+  dispatch(authActions.logoutRequest());
 
-export default operations;
+  try {
+    await axios.post('/users/logout');
+
+    token.unset();
+    dispatch(authActions.logoutSuccess());
+  } catch (error) {
+    dispatch(authActions.logoutError(error.message));
+  }
+};
+
+const authOperations = { signup, login, logout };
+
+export default authOperations;

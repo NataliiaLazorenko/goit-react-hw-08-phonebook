@@ -8,10 +8,8 @@ import styles from './AppBar.module.scss';
 const AppBar = ({ isAuthenticated }) => (
   <header className={styles.header}>
     <Container>
-      <nav className={styles.navigation}>
-        <Navigation />
-        {isAuthenticated ? <UserMenu /> : <AuthNav />}
-      </nav>
+      <Navigation />
+      {isAuthenticated ? <UserMenu /> : <AuthNav />}
     </Container>
   </header>
 );

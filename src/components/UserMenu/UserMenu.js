@@ -1,11 +1,11 @@
 import React from 'react';
-import ContactsPage from '../../pages/ContactsPage';
 
-const UserMenu = () => (
+const UserMenu = ({ email, onLogout }) => (
   <>
-    <p>e-mail</p>
-    <button type="button">Log out</button>
-    <ContactsPage />
+    <p>{email}</p>
+    <button type="button" onClick={onLogout}>
+      Log out
+    </button>
   </>
 );
 

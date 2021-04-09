@@ -1,4 +1,4 @@
-export { default as actions } from './contacts-actions';
-export { default as operations } from './contacts-operations';
-export { default as selectors } from './contacts-selectors';
-// TODO: додати у назви змінних contacts
+export { default as contactsActions } from './contacts-actions';
+export { default as contactsOperations } from './contacts-operations';
+export { default as contactsSelectors } from './contacts-selectors';
+export { default as contactsReducer } from './contacts-reducer';

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import actions from './auth-actions';
+import authActions from './auth-actions';
 
 const initialUserState = {
   name: null,
@@ -8,31 +8,39 @@ const initialUserState = {
 };
 
 const user = createReducer(initialUserState, {
-  [actions.signupSuccess]: (_, { payload }) => payload.user,
-  [actions.loginSuccess]: (_, { payload }) => payload.user,
+  [authActions.signupSuccess]: (_, { payload }) => payload.user,
+  [authActions.loginSuccess]: (_, { payload }) => payload.user,
+  [authActions.logoutSuccess]: () => initialUserState,
 });
 
 const token = createReducer(null, {
-  [actions.signupSuccess]: (_, { payload }) => payload.token,
-  [actions.loginSuccess]: (_, { payload }) => payload.token,
+  [authActions.signupSuccess]: (_, { payload }) => payload.token,
+  [authActions.loginSuccess]: (_, { payload }) => payload.token,
+  [authActions.logoutSuccess]: () => null,
 });
 
 const isLoading = createReducer(false, {
-  [actions.signupRequest]: () => true,
-  [actions.signupSuccess]: () => false,
-  [actions.signupError]: () => false,
+  [authActions.signupRequest]: () => true,
+  [authActions.signupSuccess]: () => false,
+  [authActions.signupError]: () => false,
 
-  [actions.loginRequest]: () => true,
-  [actions.loginSuccess]: () => false,
-  [actions.loginError]: () => false,
+  [authActions.loginRequest]: () => true,
+  [authActions.loginSuccess]: () => false,
+  [authActions.loginError]: () => false,
+
+  [authActions.logoutRequest]: () => true,
+  [authActions.logoutSuccess]: () => false,
+  [authActions.logoutError]: () => false,
 });
 
 const error = createReducer(null, {
-  [actions.signupError]: (_, { payload }) => payload,
-  [actions.loginError]: (_, { payload }) => payload,
+  [authActions.signupError]: (_, { payload }) => payload,
+  [authActions.loginError]: (_, { payload }) => payload,
+  [authActions.logoutError]: (_, { payload }) => payload,
 
-  [actions.signupRequest]: () => null,
-  [actions.loginRequest]: () => null,
+  [authActions.signupRequest]: () => null,
+  [authActions.loginRequest]: () => null,
+  [authActions.logoutRequest]: () => null,
 });
 
 export default combineReducers({ user, token, isLoading, error });

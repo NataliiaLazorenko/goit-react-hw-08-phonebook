@@ -16,7 +16,7 @@ const getContactsToShow = createSelector(
   },
 );
 
-const selectors = {
+const contactsSelectors = {
   getAllContacts,
   getFilter,
   getIsLoading,
@@ -24,4 +24,4 @@ const selectors = {
   getContactsToShow,
 };
 
-export default selectors;
+export default contactsSelectors;

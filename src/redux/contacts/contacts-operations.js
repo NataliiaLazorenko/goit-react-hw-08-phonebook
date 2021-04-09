@@ -1,46 +1,43 @@
 import axios from 'axios';
-import actions from './contacts-actions';
-
-axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
+import contactsActions from './contacts-actions';
 
 const fetchContacts = () => async dispatch => {
-  dispatch(actions.fetchContactsRequest());
+  dispatch(contactsActions.fetchContactsRequest());
 
   try {
     const { data } = await axios.get('/contacts');
 
-    dispatch(actions.fetchContactsSuccess(data));
+    dispatch(contactsActions.fetchContactsSuccess(data));
   } catch ({ message }) {
-    dispatch(actions.fetchContactsError(message));
+    dispatch(contactsActions.fetchContactsError(message));
   }
 };
 
 const addContact = ({ name, number }) => async dispatch => {
   const contact = { name, number };
-  dispatch(actions.addContactRequest());
+  dispatch(contactsActions.addContactRequest());
 
   try {
     const { data } = await axios.post('/contacts', contact);
 
-    dispatch(actions.addContactSuccess(data));
+    dispatch(contactsActions.addContactSuccess(data));
   } catch (error) {
-    console.log(error);
-    dispatch(actions.addContactError(error.message));
+    dispatch(contactsActions.addContactError(error.message));
   }
 };
 
 const deleteContact = contactId => async dispatch => {
-  dispatch(actions.deleteContactRequest());
+  dispatch(contactsActions.deleteContactRequest());
 
   try {
     axios.delete(`/contacts/${contactId}`);
 
-    dispatch(actions.deleteContactSuccess(contactId));
+    dispatch(contactsActions.deleteContactSuccess(contactId));
   } catch ({ message }) {
-    dispatch(actions.deleteContactError(message));
+    dispatch(contactsActions.deleteContactError(message));
   }
 };
 
-const operations = { fetchContacts, addContact, deleteContact };
+const contactsOperations = { fetchContacts, addContact, deleteContact };
 
-export default operations;
+export default contactsOperations;
