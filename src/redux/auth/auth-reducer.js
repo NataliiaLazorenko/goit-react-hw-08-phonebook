@@ -11,6 +11,7 @@ const user = createReducer(initialUserState, {
   [authActions.signupSuccess]: (_, { payload }) => payload.user,
   [authActions.loginSuccess]: (_, { payload }) => payload.user,
   [authActions.logoutSuccess]: () => initialUserState,
+  [authActions.getCurrentUserSuccess]: (_, { payload }) => payload,
 });
 
 const token = createReducer(null, {
@@ -31,16 +32,22 @@ const isLoading = createReducer(false, {
   [authActions.logoutRequest]: () => true,
   [authActions.logoutSuccess]: () => false,
   [authActions.logoutError]: () => false,
+
+  [authActions.getCurrentUserRequest]: () => true,
+  [authActions.getCurrentUserSuccess]: () => false,
+  [authActions.getCurrentUserError]: () => false,
 });
 
 const error = createReducer(null, {
   [authActions.signupError]: (_, { payload }) => payload,
   [authActions.loginError]: (_, { payload }) => payload,
   [authActions.logoutError]: (_, { payload }) => payload,
+  [authActions.getCurrentUserError]: (_, { payload }) => payload,
 
   [authActions.signupRequest]: () => null,
   [authActions.loginRequest]: () => null,
   [authActions.logoutRequest]: () => null,
+  [authActions.getCurrentUserRequest]: () => null,
 });
 
 export default combineReducers({ user, token, isLoading, error });

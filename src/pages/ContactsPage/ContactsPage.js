@@ -6,26 +6,27 @@ import Spinner from '../../components/Spinner';
 import ContactList from '../../components/ContactList';
 
 class ContactsPage extends Component {
-  //   componentDidMount() {
-  //     this.props.fetchContacts();
-  //   }
+  componentDidMount() {
+    this.props.fetchContacts();
+  }
 
   render() {
     const { isLoading, error } = this.props;
 
     return (
-      <Container>
-        <h1>Phonebook</h1>
-        <ContactForm />
+      <section className="section">
+        <Container>
+          <ContactForm />
 
-        <h2>Contacts</h2>
-        <button>Add new contact</button>
-        <Filter />
+          <h2>Contacts</h2>
+          <button>Add new contact</button>
+          <Filter />
 
-        {isLoading && <Spinner />}
-        {error && <p className="errorMessage">{error}</p>}
-        <ContactList />
-      </Container>
+          {isLoading && <Spinner />}
+          {error && <p className="errorMessage">{error}</p>}
+          <ContactList />
+        </Container>
+      </section>
     );
   }
 }

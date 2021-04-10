@@ -10,7 +10,6 @@ import { Visibility, VisibilityOff } from '@material-ui/icons';
 import HttpsIcon from '@material-ui/icons/Https';
 import { withStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
-import Container from '../../components/Container';
 import styles from './AuthForm.module.scss';
 
 const ColorButton = withStyles(theme => ({
@@ -73,77 +72,75 @@ class AuthForm extends Component {
     } = this.props;
 
     return (
-      <Container>
-        <form onSubmit={this.handleSubmit} className={styles.form}>
-          <HttpsIcon fontSize="large" className={styles.lockIcon} />
-          <h1>{text}</h1>
-          {shouldRenderName && (
-            <TextField
-              id="name"
-              type="name"
-              name="name"
-              value={name}
-              label="Name"
-              variant="outlined"
-              required={true}
-              fullWidth={true}
-              autoFocus={shouldRenderName ? true : false}
-              className={styles.inputField}
-              onChange={this.handleChange}
-            />
-          )}
+      <form onSubmit={this.handleSubmit} className={styles.form}>
+        <HttpsIcon fontSize="large" className={styles.lockIcon} />
+        <h1>{text}</h1>
+        {shouldRenderName && (
           <TextField
-            id="email"
-            type="email"
-            name="email"
-            value={email}
-            label="Email adress"
+            id="name"
+            type="name"
+            name="name"
+            value={name}
+            label="Name"
             variant="outlined"
             required={true}
             fullWidth={true}
-            autoFocus={shouldRenderName ? false : true}
+            autoFocus={shouldRenderName ? true : false}
             className={styles.inputField}
             onChange={this.handleChange}
           />
-          <TextField
-            id="password"
-            type={showPassword ? 'text' : 'password'}
-            name="password"
-            value={password}
-            label="Password"
-            variant="outlined"
-            required={true}
-            fullWidth={true}
-            className={styles.inputField}
-            onChange={this.handleChange}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={this.handleShowPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <ColorButton
-            variant="contained"
-            color="primary"
-            type="submit"
-            fullWidth={true}
-            size="large"
-          >
-            {text}
-          </ColorButton>
-          <Link to={redirectPath} className="link">
-            {redirectLinkText}
-          </Link>
-        </form>
-      </Container>
+        )}
+        <TextField
+          id="email"
+          type="email"
+          name="email"
+          value={email}
+          label="Email adress"
+          variant="outlined"
+          required={true}
+          fullWidth={true}
+          autoFocus={shouldRenderName ? false : true}
+          className={styles.inputField}
+          onChange={this.handleChange}
+        />
+        <TextField
+          id="password"
+          type={showPassword ? 'text' : 'password'}
+          name="password"
+          value={password}
+          label="Password"
+          variant="outlined"
+          required={true}
+          fullWidth={true}
+          className={styles.inputField}
+          onChange={this.handleChange}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={this.handleShowPassword}
+                  edge="end"
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+        <ColorButton
+          variant="contained"
+          color="primary"
+          type="submit"
+          fullWidth={true}
+          size="large"
+        >
+          {text}
+        </ColorButton>
+        <Link to={redirectPath} className="link">
+          {redirectLinkText}
+        </Link>
+      </form>
     );
   }
 }
