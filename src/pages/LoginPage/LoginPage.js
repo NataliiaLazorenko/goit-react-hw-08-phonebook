@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Container from '../../components/Container';
 import AuthForm from '../../components/AuthForm';
 import routes from '../../routes';
@@ -16,5 +17,9 @@ const LoginPage = ({ onLogin }) => (
     </Container>
   </section>
 );
+
+LoginPage.propTypes = {
+  onLogin: PropTypes.func.isRequired,
+};
 
 export default LoginPage;

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './ContactListItem.module.scss';
 
-// TODO: додати update контакту
 const ContactListItem = ({ name, number, onDeleteContact }) => (
   <>
     <p>
@@ -13,7 +12,7 @@ const ContactListItem = ({ name, number, onDeleteContact }) => (
     <button
       type="button"
       onClick={onDeleteContact}
-      className={`button ${styles.deleteContactBtn}`}
+      className={styles.deleteContactBtn}
     >
       Delete
     </button>

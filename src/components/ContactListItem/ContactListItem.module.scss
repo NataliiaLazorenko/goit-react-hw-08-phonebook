@@ -1,16 +1,19 @@
+@import '../../styles/shared.scss';
+
 .contactName {
   margin-right: 15px;
   font-weight: 500;
 }
 
 .deleteContactBtn {
-  padding: 5px 30px;
+  @extend %button;
 
-  color: #299e67;
-  background-color: #fff;
+  padding: 5px 30px;
+  color: $green;
+  background-color: $white;
 
   &:focus,
   &:hover {
-    background-color: #bcfcdd;
+    background-color: $light-green;
   }
 }

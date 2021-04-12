@@ -6,12 +6,20 @@ import styles from './AuthNav.module.scss';
 const AuthNav = () => (
   <ul className={styles.AuthNavList}>
     <li className={styles.listItem}>
-      <NavLink to={routes.login} className={`link ${styles.listItemLink}`}>
+      <NavLink
+        to={routes.login}
+        className={styles.listItemLink}
+        activeClassName={styles.activeLink}
+      >
         Log in
       </NavLink>
     </li>
-    <li>
-      <NavLink to={routes.register} className={`link ${styles.listItemLink}`}>
+    <li className={styles.listItem}>
+      <NavLink
+        to={routes.register}
+        className={styles.listItemLink}
+        activeClassName={styles.activeLink}
+      >
         Sign up
       </NavLink>
     </li>

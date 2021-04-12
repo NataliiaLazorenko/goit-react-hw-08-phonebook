@@ -1,12 +1,28 @@
-import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import React, { Component, Suspense, lazy } from 'react';
+import PropTypes from 'prop-types';
+import { Switch, Redirect } from 'react-router-dom';
 import AppBar from './components/AppBar';
-import HomePage from './pages/HomePage';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
-import ContactsPage from './pages/ContactsPage';
+import Spinner from './components/Spinner';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 import Footer from './components/Footer';
 import routes from './routes';
+
+const HomePage = lazy(() =>
+  import('./pages/HomePage' /* webpackChunkName: 'home-page' */),
+);
+
+const RegisterPage = lazy(() =>
+  import('./pages/RegisterPage' /* webpackChunkName: 'register-page' */),
+);
+
+const LoginPage = lazy(() =>
+  import('./pages/LoginPage' /* webpackChunkName: 'login-page' */),
+);
+
+const ContactsPage = lazy(() =>
+  import('./pages/ContactsPage' /* webpackChunkName: 'contacts-page' */),
+);
 
 class App extends Component {
   componentDidMount() {
@@ -18,13 +34,29 @@ class App extends Component {
       <>
         <AppBar />
 
-        <Switch>
-          <Route exact path={routes.home} component={HomePage} />
-          <Route path={routes.register} component={RegisterPage} />
-          <Route path={routes.login} component={LoginPage} />
-          <Route path={routes.contacts} component={ContactsPage} />
-          <Redirect to={routes.home} />
-        </Switch>
+        <Suspense fallback={<Spinner />}>
+          <Switch>
+            <PublicRoute exact path={routes.home} component={HomePage} />
+            <PublicRoute
+              path={routes.register}
+              restricted
+              redirectTo={routes.contacts}
+              component={RegisterPage}
+            />
+            <PublicRoute
+              path={routes.login}
+              restricted
+              redirectTo={routes.contacts}
+              component={LoginPage}
+            />
+            <PrivateRoute
+              path={routes.contacts}
+              redirectTo={routes.login}
+              component={ContactsPage}
+            />
+            <Redirect to={routes.home} />
+          </Switch>
+        </Suspense>
 
         <Footer />
       </>
@@ -32,5 +64,8 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  onGetCurrentUser: PropTypes.func.isRequired,
+};
+
 export default App;
-// TODO: додати <Suspense> та lazy

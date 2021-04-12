@@ -1,3 +1,14 @@
+@import '../../styles/shared.scss';
+
+.contactsList {
+  @extend %list;
+
+  @media screen and (min-width: 1200px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
 .listItem {
   display: flex;
   justify-content: space-between;
@@ -6,4 +17,14 @@
 
 .listItem:not(:last-child) {
   margin-bottom: 10px;
+}
+
+@media screen and (min-width: 1200px) {
+  .listItem {
+    width: calc((100% - 60px) / 2);
+  }
+
+  .listItem:nth-child(odd) {
+    margin-right: 60px;
+  }
 }

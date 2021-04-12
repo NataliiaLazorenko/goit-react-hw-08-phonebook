@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './ContactForm.module.scss';
 
 class ContactForm extends Component {
-  static propTypes = {
-    onFormSubmit: PropTypes.func.isRequired,
-  };
-
   state = {
     name: '',
     number: '',
@@ -54,8 +50,9 @@ class ContactForm extends Component {
     const { name, number } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit} className={styles.form}>
-        <label className="label">
+      <form onSubmit={this.handleSubmit} className={styles.addContactForm}>
+        <h2 className={styles.contactFormTitle}>New contact</h2>
+        <label className={styles.contactFormLabel}>
           Name
           <input
             type="text"
@@ -63,10 +60,10 @@ class ContactForm extends Component {
             name="name"
             value={name}
             onChange={this.handleChange}
-            className="inputField"
+            className={styles.contactFormInput}
           />
         </label>
-        <label className="label">
+        <label className={styles.contactFormLabel}>
           Phone Number
           <input
             type="tel"
@@ -74,7 +71,7 @@ class ContactForm extends Component {
             name="number"
             value={number}
             onChange={this.handleChange}
-            className="inputField"
+            className={styles.contactFormInput}
           />
         </label>
         <button
@@ -88,5 +85,20 @@ class ContactForm extends Component {
     );
   }
 }
+
+ContactForm.propTypes = {
+  onFormSubmit: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      number: PropTypes.string,
+    }),
+  ),
+};
+
+ContactForm.defaultProps = {
+  items: [],
+};
 
 export default ContactForm;

@@ -5,6 +5,7 @@ import ContactsPage from './ContactsPage';
 const mapStateToProps = state => ({
   isLoading: contactsSelectors.getIsLoading(state),
   error: contactsSelectors.getError(state),
+  contacts: contactsSelectors.getAllContacts(state),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Container from '../../components/Container';
 import routes from '../../routes';
@@ -9,7 +10,7 @@ const HomePage = ({ isAuthenticated }) => (
     <Container>
       <h1 className={styles.title}>Welcome to Phonebook</h1>
       {!isAuthenticated && (
-        <div className={styles.heroText}>
+        <div className={styles.textContainer}>
           <p className={styles.text}>To use it, please</p>
           <Link to={routes.login} className={styles.link}>
             log in
@@ -19,5 +20,9 @@ const HomePage = ({ isAuthenticated }) => (
     </Container>
   </section>
 );
+
+HomePage.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 
 export default HomePage;

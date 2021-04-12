@@ -12,9 +12,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import styles from './AuthForm.module.scss';
 
-const ColorButton = withStyles(theme => ({
+const ColorButton = withStyles(_ => ({
   root: {
-    backgroundColor: green[500],
+    backgroundColor: green[800],
     paddingTop: '15px',
     paddingBottom: '15px',
     marginBottom: '25px',
@@ -72,9 +72,9 @@ class AuthForm extends Component {
     } = this.props;
 
     return (
-      <form onSubmit={this.handleSubmit} className={styles.form}>
+      <form onSubmit={this.handleSubmit} className={styles.authForm}>
         <HttpsIcon fontSize="large" className={styles.lockIcon} />
-        <h1>{text}</h1>
+        <h2 className={styles.authFormTitle}>{text}</h2>
         {shouldRenderName && (
           <TextField
             id="name"
@@ -83,8 +83,8 @@ class AuthForm extends Component {
             value={name}
             label="Name"
             variant="outlined"
-            required={true}
-            fullWidth={true}
+            required
+            fullWidth
             autoFocus={shouldRenderName ? true : false}
             className={styles.inputField}
             onChange={this.handleChange}
@@ -97,8 +97,8 @@ class AuthForm extends Component {
           value={email}
           label="Email adress"
           variant="outlined"
-          required={true}
-          fullWidth={true}
+          required
+          fullWidth
           autoFocus={shouldRenderName ? false : true}
           className={styles.inputField}
           onChange={this.handleChange}
@@ -110,8 +110,8 @@ class AuthForm extends Component {
           value={password}
           label="Password"
           variant="outlined"
-          required={true}
-          fullWidth={true}
+          required
+          fullWidth
           className={styles.inputField}
           onChange={this.handleChange}
           InputProps={{
@@ -132,12 +132,12 @@ class AuthForm extends Component {
           variant="contained"
           color="primary"
           type="submit"
-          fullWidth={true}
+          fullWidth
           size="large"
         >
           {text}
         </ColorButton>
-        <Link to={redirectPath} className="link">
+        <Link to={redirectPath} className={styles.formLink}>
           {redirectLinkText}
         </Link>
       </form>

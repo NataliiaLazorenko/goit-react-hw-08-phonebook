@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Container from '../Container';
 import Logo from '../Logo';
 import Navigation from '../Navigation';
@@ -7,7 +8,7 @@ import AuthNav from '../AuthNav';
 import styles from './AppBar.module.scss';
 
 const AppBar = ({ isAuthenticated }) => (
-  <header className={styles.header}>
+  <header>
     <Container classes={styles.headerContainer}>
       <Logo />
       <Navigation />
@@ -15,5 +16,9 @@ const AppBar = ({ isAuthenticated }) => (
     </Container>
   </header>
 );
+
+AppBar.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 
 export default AppBar;

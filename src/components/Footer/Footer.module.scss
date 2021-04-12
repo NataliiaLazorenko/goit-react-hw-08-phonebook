@@ -1,3 +1,5 @@
+@import '../../styles/shared.scss';
+
 .footer {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -5,28 +7,28 @@
 
 .developerContacts {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
 }
 
 .text {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .developerName {
   font-weight: 700;
 }
 
-.link {
-  color: inherit;
+.developerLink {
+  @extend %link;
 
   &:focus,
   &:hover {
-    color: green;
+    color: $pink-accent;
   }
 
   &:not(:last-child) {
-    margin-right: 10px;
+    margin-right: 20px;
   }
 }
 
@@ -34,4 +36,8 @@
   width: 20px;
   height: 20px;
   fill: currentColor;
+}
+
+.footerLogo {
+  margin-bottom: 20px;
 }
